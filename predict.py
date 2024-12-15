@@ -7,7 +7,7 @@ import re
 import sys
 
 # Step 1: Configure Gemini API
-genai.configure(api_key="AIzaSyBUt15mFPXmUiMJYUxceIpRkuw-sCLjQlI")  # Replace with your Gemini API key
+genai.configure(api_key="<YOUR_API_KEY>")  # Replace with your Gemini API key
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 if len(sys.argv) > 1:
