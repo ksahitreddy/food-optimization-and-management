@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Inventory</h1>
+    </header>
+
+    <main>
+        <h3>Ingredient Inventory</h3>
+        <table>
+            <tr>
+                <th>Ingredient Name</th>
+                <th>Quantity</th>
+            </tr>
+            {% for ingredient in inventory %}
+                <tr>
+                    <td>{{ ingredient[0] }}</td>
+                    <td>{{ ingredient[1] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+
+    <footer>
+        <p>Restaurant Management System</p>
+    </footer>
+</body>
+</html>

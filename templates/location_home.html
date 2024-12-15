@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ location }} Restaurant Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Restaurants in {{ location }}</h1>
+    <h2>Menu</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Restaurant</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for restaurant in restaurants %}
+                <tr>
+                    <td>{{ restaurant[1] }}</td>
+                    <td>
+                        <a href="{{ url_for('menu', restaurant_id=restaurant[0]) }}">View Menu</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form method="POST">
+        <button type="submit" name="generate_predictions">Generate Predictions</button>
+    </form>
+
+    {% if predictions %}
+        <h3>Predictions for Restaurants in {{ location }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Restaurant</th>
+                    <th>Dish</th>
+                    <th>Predicted Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prediction in predictions %}
+                    <tr>
+                        <td>{{ prediction['restaurant_name'] }}</td>
+                        <td>{{ prediction['dish_name'] }}</td>
+                        <td>{{ prediction['predicted_sales'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <h2>Supply Ingredients to Other Restaurants</h2>
+    <form method="POST">
+        <input type="hidden" name="source_restaurant" value="{{ current_restaurant_id }}">
+        <label for="target_restaurant">Select Target Restaurant:</label>
+        <select name="target_restaurant" required>
+            {% for restaurant in target_restaurants %}
+                <option value="{{ restaurant[0] }}">{{ restaurant[1] }} ({{ restaurant[2] }})</option>
+            {% endfor %}
+        </select>
+
+        <label for="ingredient_id">Select Ingredient:</label>
+        <select name="ingredient_id" required>
+            {% for ingredient in ingredients %}
+                <option value="{{ ingredient[0] }}">{{ ingredient[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="supply_quantity">Quantity to Supply:</label>
+        <input type="number" name="supply_quantity" required min="1">
+
+        <button type="submit" name="supply_ingredients">Supply Ingredients</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

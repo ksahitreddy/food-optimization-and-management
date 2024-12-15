@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ location }} Restaurant Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ location }} Restaurant</h1>
+    </header>
+
+    <main>
+        <h2>Menu</h2>
+
+        <form method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dish</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dish in dishes %}
+                    <tr>
+                        <td>{{ dish[1] }}</td>
+                        <td>${{ dish[2] }}</td>
+                        <td>
+                            <input type="number" name="dish_quantity" min="0" value="0" />
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div>
+                <button type="submit">Place Order</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
