@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Selection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Restaurant</h1>
+    </header>
+
+    <main>
+        <h2>Select a Location</h2>
+        <form action="{{ url_for('location_home', location='') }}" method="GET">
+            <select name="location" onchange="window.location.href='/location_home/' + this.value">
+                <option value="">Select Location</option>
+                {% for location in locations %}
+                    <option value="{{ location[0] }}">{{ location[0] }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </main>
+
+    <footer>
+        <p>Restaurant Management System</p>
+    </footer>
+</body>
+</html>
