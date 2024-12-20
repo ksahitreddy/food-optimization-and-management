@@ -10,7 +10,7 @@ Before running the command, create a database <your_database_name> in MySQL. The
 mysql -u your_username -p your_database_name < mysqldumpfile.sql
 ```
 ## Run the code
-Before running the code, edit the MySQL configuration in app.py [app.py] according to your settings.
+Before running the code, edit the MySQL configuration in [app.py](./app.py) according to your settings.
 ```bash
 python app.py
 ```
