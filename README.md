@@ -5,7 +5,7 @@ This project uses a MySQL server to store an example McDonalds restaurant data s
 First clone the github repository and then run the following commands in your terminal.
 
 ## Download the MySQL database into your MySQL
-Before running the command, create a database <your_database_name> in MySQL. Then in terminal run the command.
+Before running the command, create an empty database with <your_database_name> in MySQL. Then in terminal run the command.
 ```bash
 mysql -u your_username -p your_database_name < mysqldumpfile.sql
 ```
