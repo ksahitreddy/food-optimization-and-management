@@ -10,7 +10,7 @@ Before running the command, create an empty database with <your_database_name> i
 mysql -u your_username -p your_database_name < mysqldumpfile.sql
 ```
 ## Run the code
-Before running the code, edit the MySQL configuration in [app.py](./app.py) according to your settings.
+Before running the code, edit the MySQL configuration in [app.py](./app.py) according to your settings. Also, create a Gemini API Key, and replace the Gemini API key in [predict.py](./predict.py).
 ```bash
 python app.py
 ```
