@@ -3,7 +3,7 @@ import mysql.connector
 import subprocess
 
 app = Flask(__name__)
-app.secret_key = '6829'
+app.secret_key = '<secret_key>' #Enter your secret key
 
 # Database connection
 def get_db_connection():
